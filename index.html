@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVA | Art Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">EVA</div>
+        <ul class="nav-links">
+            <li><a href="#home">Inicio</a></li>
+            <li><a href="#gallery">Galería</a></li>
+            <li><a href="#about">Sobre Mí</a></li>
+            <li><a href="#contact">Contacto</a></li>
+        </ul>
+    </nav>
+
+    <!-- Parallax Hero Section -->
+    <header id="home" class="hero">
+        <div class="parallax-wrapper">
+            <!-- Background Layer (Moves slowest) -->
+            <div class="parallax-layer layer-bg" data-speed="0.2"></div>
+            
+            <!-- Midground Layers -->
+            <div class="parallax-layer layer-2" data-speed="0.4"></div>
+            <div class="parallax-layer layer-3" data-speed="0.6"></div>
+            
+            <!-- Foreground Layer (Moves fastest) -->
+            <div class="parallax-layer layer-fg" data-speed="0.9"></div>
+        </div>
+        
+        <div class="hero-content">
+            <h1 class="title">E V A</h1>
+            <p class="subtitle">Expresión. Visión. Arte.</p>
+            <a href="#gallery" class="btn">Explorar Obras</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery-section">
+            <div class="section-header">
+                <h2>Obras Destacadas</h2>
+                <div class="divider"></div>
+            </div>
+            
+            <div class="gallery-grid">
+                <!-- Gallery Item 1 -->
+                <div class="gallery-item reveal-up">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80" alt="Obra de Arte 1">
+                        <div class="overlay">
+                            <h3>Eternidad</h3>
+                            <p>Óleo sobre lienzo</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 2 -->
+                <div class="gallery-item reveal-up" style="transition-delay: 0.2s;">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80" alt="Obra de Arte 2">
+                        <div class="overlay">
+                            <h3>Silencio</h3>
+                            <p>Acuarela</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Gallery Item 3 -->
+                <div class="gallery-item reveal-up" style="transition-delay: 0.4s;">
+                    <div class="img-container">
+                        <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=800&q=80" alt="Obra de Arte 3">
+                        <div class="overlay">
+                            <h3>Caos Abstracto</h3>
+                            <p>Técnica mixta</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="about-container">
+                <div class="about-image reveal-left">
+                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80" alt="Retrato de Eva">
+                </div>
+                <div class="about-content reveal-right">
+                    <h2>La Artista</h2>
+                    <div class="divider left"></div>
+                    <p>Soy Eva, una artista visual apasionada por explorar las profundidades de la emoción humana a través del color y la textura. Mi trabajo es una constante búsqueda de equilibrio entre la luz y la sombra, lo figurativo y lo abstracto.</p>
+                    <p>Cada pincelada es una palabra en un diálogo silencioso con el espectador, invitándolo a sumergirse en mundos paralelos donde la imaginación no tiene límites.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-box reveal-up">
+                <h2>¿Trabajamos Juntos?</h2>
+                <p>Para consultas sobre comisiones, exposiciones o adquisición de obras, no dudes en contactarme.</p>
+                <a href="mailto:hola@eva-art.com" class="btn btn-outline">Enviar Mensaje</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">EVA</div>
+            <div class="social-links">
+                <a href="#">Instagram</a>
+                <a href="#">Behance</a>
+                <a href="#">Pinterest</a>
+            </div>
+            <p>&copy; 2026 EVA Art. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
