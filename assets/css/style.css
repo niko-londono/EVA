@@ -2,13 +2,12 @@
    CSS Variables & Resets
    ========================================================================== */
 :root {
-    --bg-color: #fcfbf9; /* Bone white / warm white */
-    --text-primary: #1a1a1a;
-    --text-secondary: #555555;
-    --accent-color: #d1b58a; /* Elegant gold/sand */
+    --text-primary: #ffffff;
+    --text-dark: #1a1a1a;
+    --accent-color: #ffd1dc; /* Pastel pink */
     
-    --font-heading: 'Cinzel', serif;
-    --font-body: 'Montserrat', sans-serif;
+    --font-heading: 'Anton', sans-serif;
+    --font-body: 'Outfit', sans-serif;
     
     --cursor-size: 10px;
     --cursor-follower-size: 40px;
@@ -20,16 +19,17 @@
     box-sizing: border-box;
 }
 
-html {
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+/* Hide scrollbar for a cleaner slider look */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 body {
-    background-color: var(--bg-color);
+    background-color: #000;
     color: var(--text-primary);
     font-family: var(--font-body);
-    overflow-x: hidden;
+    overflow: hidden; /* We'll handle scrolling in the main container */
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
 }
@@ -43,12 +43,13 @@ body {
     left: 0;
     width: var(--cursor-size);
     height: var(--cursor-size);
-    background-color: var(--text-primary);
+    background-color: #fff;
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease;
+    mix-blend-mode: difference;
 }
 
 .cursor-follower {
@@ -57,27 +58,27 @@ body {
     left: 0;
     width: var(--cursor-follower-size);
     height: var(--cursor-follower-size);
-    border: 1px solid rgba(26, 26, 26, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+    mix-blend-mode: difference;
 }
 
-/* Cursor Hover States */
 .cursor-hover .cursor-follower {
     transform: translate(-50%, -50%) scale(1.5);
-    background-color: rgba(209, 181, 138, 0.2);
+    background-color: rgba(255, 255, 255, 0.2);
     border-color: transparent;
 }
 
 /* ==========================================================================
-   Typography & UI Elements
+   Typography & Buttons
    ========================================================================== */
-h1, h2, h3, h4, h5, h6 {
+h1, h2, h3 {
     font-family: var(--font-heading);
-    font-weight: 400;
+    text-transform: uppercase;
 }
 
 a {
@@ -87,44 +88,38 @@ a {
 
 .btn {
     display: inline-block;
-    padding: 12px 32px;
-    background-color: var(--text-primary);
-    color: var(--bg-color);
+    padding: 15px 40px;
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 1rem;
     letter-spacing: 2px;
     text-transform: uppercase;
-    border: 1px solid var(--text-primary);
     transition: all 0.4s ease;
     cursor: pointer;
-    border-radius: 2px;
+    border-radius: 30px;
 }
 
-.btn:hover {
-    background-color: transparent;
-    color: var(--text-primary);
+.btn-glass {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
 }
 
-.btn-outline {
-    background-color: transparent;
-    color: var(--text-primary);
+.btn-glass:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
 }
 
-.btn-outline:hover {
-    background-color: var(--text-primary);
-    color: var(--bg-color);
+.btn-solid {
+    background: var(--text-dark);
+    color: #fff;
+    border: none;
 }
 
-.divider {
-    width: 60px;
-    height: 2px;
-    background-color: var(--accent-color);
-    margin: 20px auto;
-}
-
-.divider.left {
-    margin: 20px 0;
+.btn-solid:hover {
+    background: #333;
+    transform: translateY(-2px);
 }
 
 /* ==========================================================================
@@ -135,52 +130,35 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 30px 5%;
+    padding: 40px 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    transition: all 0.4s ease;
-}
-
-.navbar.scrolled {
-    background-color: rgba(252, 251, 249, 0.95);
-    padding: 20px 5%;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-    backdrop-filter: blur(10px);
+    pointer-events: none; /* Let clicks pass through except on links */
 }
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    letter-spacing: 5px;
-    color: #fff; /* Starts white on hero */
-    transition: color 0.4s ease;
-}
-
-.navbar.scrolled .logo {
-    color: var(--text-primary);
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    pointer-events: auto;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     gap: 40px;
+    pointer-events: auto;
 }
 
 .nav-links li a {
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #fff;
     position: relative;
-    transition: color 0.4s ease;
-}
-
-.navbar.scrolled .nav-links li a {
-    color: var(--text-primary);
+    mix-blend-mode: difference; /* Ensures visibility on any background */
 }
 
 .nav-links li a::after {
@@ -189,8 +167,8 @@ a {
     bottom: -5px;
     left: 0;
     width: 0;
-    height: 1px;
-    background-color: var(--accent-color);
+    height: 2px;
+    background-color: #fff;
     transition: width 0.3s ease;
 }
 
@@ -199,323 +177,125 @@ a {
 }
 
 /* ==========================================================================
-   Parallax Hero Section
+   Slider Container & Scroll Snapping
    ========================================================================== */
-.hero {
-    position: relative;
+.slider-container {
+    width: 100vw;
     height: 100vh;
-    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+}
+
+.slide {
+    width: 100vw;
+    height: 100vh;
+    scroll-snap-align: start;
+    position: relative;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000;
 }
 
-.parallax-wrapper {
+/* ==========================================================================
+   Parallax Scene & Layers
+   ========================================================================== */
+.parallax-scene {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%; /* Extra height for scrolling */
-    z-index: 1;
+    top: -5%;
+    left: -5%;
+    width: 110%; /* Slightly larger to allow mouse panning without showing edges */
+    height: 110%;
+    transform-style: preserve-3d;
 }
 
-.parallax-layer {
+.layer {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     will-change: transform;
 }
 
-/* 
-   We use placeholder abstract art for the layers.
-   In a real scenario, layer-bg is the background, layer-2 is midground, etc.
-   Here we create a single stunning image with a gradient overlay,
-   and we will simulate depth using GSAP on different scale layers.
-*/
-.layer-bg {
-    background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=2000&q=80');
-    filter: brightness(0.7);
-}
-
-.layer-2 {
-    /* Using a subtle texture or transparent PNG would go here */
-    background: radial-gradient(circle at center, transparent 0%, rgba(0,0,0,0.4) 100%);
-    z-index: 2;
-}
-
-.hero-content {
-    position: relative;
-    z-index: 10;
+.slide-content {
     text-align: center;
-    color: #fff;
-    max-width: 800px;
-    padding: 0 20px;
+    pointer-events: auto;
 }
 
-.hero-content .title {
-    font-size: clamp(4rem, 10vw, 8rem);
-    letter-spacing: 20px;
-    margin-bottom: 10px;
-    text-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    /* Clip text to background for a cool effect if desired, but solid is elegant */
+.align-left {
+    position: absolute;
+    left: 10%;
+    text-align: left;
 }
 
-.hero-content .subtitle {
+.align-right {
+    position: absolute;
+    right: 10%;
+    text-align: right;
+}
+
+.huge-title {
+    font-size: clamp(6rem, 15vw, 12rem);
+    line-height: 0.9;
+    letter-spacing: 5px;
+    text-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.subtitle {
     font-size: clamp(1rem, 2vw, 1.5rem);
     font-weight: 300;
-    letter-spacing: 10px;
+    letter-spacing: 8px;
     text-transform: uppercase;
-    margin-bottom: 40px;
     opacity: 0.9;
 }
 
-/* ==========================================================================
-   Gallery Section
-   ========================================================================== */
-.gallery-section {
-    padding: 120px 5%;
-    background-color: var(--bg-color);
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 80px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    letter-spacing: 2px;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    gap: 40px;
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-    border-radius: 4px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-}
-
-.img-container {
-    width: 100%;
-    height: 500px;
-    overflow: hidden;
-    position: relative;
-}
-
-.img-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.gallery-item:hover img {
-    transform: scale(1.08);
-}
-
-.overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    padding: 40px;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    color: #fff;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.gallery-item:hover .overlay {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.overlay h3 {
-    font-size: 1.5rem;
-    margin-bottom: 5px;
-    font-family: var(--font-heading);
-}
-
-.overlay p {
-    font-size: 0.9rem;
-    font-weight: 300;
-    letter-spacing: 1px;
-    color: var(--accent-color);
-}
-
-/* ==========================================================================
-   About Section
-   ========================================================================== */
-.about-section {
-    padding: 120px 5%;
-    background-color: #fff;
-}
-
-.about-container {
-    display: flex;
-    align-items: center;
-    gap: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.about-image {
-    flex: 1;
-    position: relative;
-}
-
-.about-image img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 2px;
-    box-shadow: -20px 20px 0px rgba(209, 181, 138, 0.2);
-}
-
-.about-content {
-    flex: 1;
-}
-
-.about-content h2 {
-    font-size: 3rem;
-}
-
-.about-content p {
-    margin-bottom: 20px;
-    font-size: 1.1rem;
-    color: var(--text-secondary);
-}
-
-/* ==========================================================================
-   Contact Section
-   ========================================================================== */
-.contact-section {
-    padding: 150px 5%;
-    background-color: var(--bg-color);
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-}
-
-.contact-box {
-    max-width: 600px;
-    margin: 0 auto;
-    background: #fff;
-    padding: 80px 40px;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.03);
-    border-top: 5px solid var(--accent-color);
-}
-
-.contact-box h2 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
-
-.contact-box p {
-    color: var(--text-secondary);
-    margin-bottom: 40px;
-}
-
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-footer {
-    background-color: var(--text-primary);
-    color: #fff;
-    padding: 60px 5%;
-    text-align: center;
-}
-
-.footer-logo {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    letter-spacing: 5px;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-}
-
-.social-links {
-    margin-bottom: 30px;
-}
-
-.social-links a {
-    margin: 0 15px;
-    font-size: 0.9rem;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    transition: color 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--accent-color);
-}
-
-footer p {
-    font-size: 0.8rem;
-    color: #888;
-}
-
-/* ==========================================================================
-   Animations (GSAP Initial States)
-   ========================================================================== */
-.reveal-up {
-    opacity: 0;
-    transform: translateY(50px);
-}
-
-.reveal-left {
-    opacity: 0;
-    transform: translateX(-50px);
-}
-
-.reveal-right {
-    opacity: 0;
-    transform: translateX(50px);
+.floating-img {
+    will-change: transform;
 }
 
 /* ==========================================================================
    Responsive
    ========================================================================== */
-@media (max-width: 992px) {
-    .about-container {
-        flex-direction: column;
-        gap: 40px;
-    }
-    
-    .nav-links {
-        display: none; /* In a real app, add a hamburger menu */
-    }
-}
-
 @media (max-width: 768px) {
-    .hero-content .title {
-        font-size: 3rem;
-        letter-spacing: 10px;
-    }
-    
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .about-image img {
-        box-shadow: -10px 10px 0px rgba(209, 181, 138, 0.2);
+    .huge-title {
+        font-size: 5rem;
     }
     
     .cursor, .cursor-follower {
         display: none;
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .align-left, .align-right {
+        left: 5%;
+        right: 5%;
+        text-align: center;
+    }
+    
+    .floating-img {
+        width: 80vw !important;
+        height: 50vh !important;
+        position: relative !important;
+        top: auto !important;
+        bottom: auto !important;
+        left: auto !important;
+        right: auto !important;
+        margin-top: 50px;
+    }
+    
+    .layer.content-layer {
+        z-index: 10;
     }
 }

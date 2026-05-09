@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVA | Art Portfolio</title>
+    <title>EVA | Artistic Parallax</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Thick Sans-serif for Impact, clean Sans for body -->
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
@@ -23,120 +24,86 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
-    <!-- Navigation -->
+    <!-- Navigation Overlay -->
     <nav class="navbar">
         <div class="logo">EVA</div>
         <ul class="nav-links">
-            <li><a href="#home">Inicio</a></li>
-            <li><a href="#gallery">Galería</a></li>
-            <li><a href="#about">Sobre Mí</a></li>
-            <li><a href="#contact">Contacto</a></li>
+            <li><a href="#slide-1">Inicio</a></li>
+            <li><a href="#slide-2">Obras</a></li>
+            <li><a href="#slide-3">Sobre Mí</a></li>
         </ul>
     </nav>
 
-    <!-- Parallax Hero Section -->
-    <header id="home" class="hero">
-        <div class="parallax-wrapper">
-            <!-- Background Layer (Moves slowest) -->
-            <div class="parallax-layer layer-bg" data-speed="0.2"></div>
-            
-            <!-- Midground Layers -->
-            <div class="parallax-layer layer-2" data-speed="0.4"></div>
-            <div class="parallax-layer layer-3" data-speed="0.6"></div>
-            
-            <!-- Foreground Layer (Moves fastest) -->
-            <div class="parallax-layer layer-fg" data-speed="0.9"></div>
-        </div>
+    <!-- Scroll Snapping Container -->
+    <main class="slider-container">
         
-        <div class="hero-content">
-            <h1 class="title">E V A</h1>
-            <p class="subtitle">Expresión. Visión. Arte.</p>
-            <a href="#gallery" class="btn">Explorar Obras</a>
-        </div>
-    </header>
-
-    <!-- Main Content -->
-    <main>
-        <!-- Gallery Section -->
-        <section id="gallery" class="gallery-section">
-            <div class="section-header">
-                <h2>Obras Destacadas</h2>
-                <div class="divider"></div>
-            </div>
-            
-            <div class="gallery-grid">
-                <!-- Gallery Item 1 -->
-                <div class="gallery-item reveal-up">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=800&q=80" alt="Obra de Arte 1">
-                        <div class="overlay">
-                            <h3>Eternidad</h3>
-                            <p>Óleo sobre lienzo</p>
-                        </div>
+        <!-- SLIDE 1: HERO -->
+        <section class="slide" id="slide-1">
+            <div class="parallax-scene">
+                <!-- Background (moves least) -->
+                <div class="layer bg-layer" data-depth="0.1" style="background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=2000&q=80'); filter: blur(2px);"></div>
+                
+                <!-- Midground Layer -->
+                <div class="layer mid-layer" data-depth="0.4" style="background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80'); opacity: 0.6; mix-blend-mode: overlay;"></div>
+                
+                <!-- Content Layer -->
+                <div class="layer content-layer" data-depth="0.2">
+                    <div class="slide-content">
+                        <h1 class="huge-title">EVA</h1>
+                        <p class="subtitle">Arte Abstracto & Surrealismo</p>
                     </div>
                 </div>
                 
-                <!-- Gallery Item 2 -->
-                <div class="gallery-item reveal-up" style="transition-delay: 0.2s;">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=800&q=80" alt="Obra de Arte 2">
-                        <div class="overlay">
-                            <h3>Silencio</h3>
-                            <p>Acuarela</p>
-                        </div>
+                <!-- Foreground Element (moves most) -->
+                <div class="layer fg-layer" data-depth="0.8">
+                    <!-- Transparent PNG shape or graphic -->
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Abstract Shape" class="floating-img" style="border-radius: 50%; width: 30vw; height: 30vw; object-fit: cover; position: absolute; bottom: 10%; right: 10%; box-shadow: 0 30px 60px rgba(0,0,0,0.3);">
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: GALLERY/WORKS -->
+        <section class="slide" id="slide-2">
+            <div class="parallax-scene">
+                <!-- Pastel background -->
+                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
+                
+                <div class="layer content-layer" data-depth="0.3">
+                    <div class="slide-content align-left">
+                        <h2 class="huge-title">SUEÑOS</h2>
+                        <p class="subtitle">Colección 2026</p>
+                        <a href="#" class="btn btn-glass">Ver Galería Completa</a>
                     </div>
                 </div>
                 
-                <!-- Gallery Item 3 -->
-                <div class="gallery-item reveal-up" style="transition-delay: 0.4s;">
-                    <div class="img-container">
-                        <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=800&q=80" alt="Obra de Arte 3">
-                        <div class="overlay">
-                            <h3>Caos Abstracto</h3>
-                            <p>Técnica mixta</p>
-                        </div>
+                <!-- Floating Artwork -->
+                <div class="layer fg-layer" data-depth="0.6">
+                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=800&q=80" alt="Sueños Art" class="floating-img" style="border-radius: 20px; width: 40vw; height: 50vh; object-fit: cover; position: absolute; top: 25%; right: 15%; box-shadow: 0 40px 80px rgba(0,0,0,0.2);">
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 3: ABOUT / CONTACT -->
+        <section class="slide" id="slide-3">
+            <div class="parallax-scene">
+                <!-- Pastel background -->
+                <div class="layer bg-layer" data-depth="0.15" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                
+                <div class="layer fg-layer" data-depth="0.5">
+                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80" alt="Eva" class="floating-img" style="border-radius: 10px; width: 35vw; height: 60vh; object-fit: cover; position: absolute; bottom: 10%; left: 10%; box-shadow: 0 30px 60px rgba(252, 182, 159, 0.4);">
+                </div>
+
+                <div class="layer content-layer" data-depth="0.2">
+                    <div class="slide-content align-right" style="position: absolute; right: 10%; top: 30%; max-width: 500px; text-align: left;">
+                        <h2 class="huge-title" style="font-size: 5rem;">LA<br>ARTISTA</h2>
+                        <p class="subtitle" style="color: #333; margin-top: 20px; line-height: 1.8; text-transform: none; letter-spacing: 0;">Exploro las emociones a través del color y texturas oníricas. Cada lienzo es una ventana a un mundo paralelo.</p>
+                        <a href="mailto:hola@eva.com" class="btn btn-solid" style="margin-top: 30px;">Hablemos</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
-        <section id="about" class="about-section">
-            <div class="about-container">
-                <div class="about-image reveal-left">
-                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80" alt="Retrato de Eva">
-                </div>
-                <div class="about-content reveal-right">
-                    <h2>La Artista</h2>
-                    <div class="divider left"></div>
-                    <p>Soy Eva, una artista visual apasionada por explorar las profundidades de la emoción humana a través del color y la textura. Mi trabajo es una constante búsqueda de equilibrio entre la luz y la sombra, lo figurativo y lo abstracto.</p>
-                    <p>Cada pincelada es una palabra en un diálogo silencioso con el espectador, invitándolo a sumergirse en mundos paralelos donde la imaginación no tiene límites.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section id="contact" class="contact-section">
-            <div class="contact-box reveal-up">
-                <h2>¿Trabajamos Juntos?</h2>
-                <p>Para consultas sobre comisiones, exposiciones o adquisición de obras, no dudes en contactarme.</p>
-                <a href="mailto:hola@eva-art.com" class="btn btn-outline">Enviar Mensaje</a>
-            </div>
-        </section>
     </main>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-logo">EVA</div>
-            <div class="social-links">
-                <a href="#">Instagram</a>
-                <a href="#">Behance</a>
-                <a href="#">Pinterest</a>
-            </div>
-            <p>&copy; 2026 EVA Art. Todos los derechos reservados.</p>
-        </div>
-    </footer>
 
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>

@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
        ========================================================================== */
     const cursor = document.querySelector('.cursor');
     const cursorFollower = document.querySelector('.cursor-follower');
-    const links = document.querySelectorAll('a, .btn, .gallery-item');
+    const links = document.querySelectorAll('a, .btn, .floating-img');
 
     if (cursor && cursorFollower && window.matchMedia("(min-width: 768px)").matches) {
         let posX = 0, posY = 0;
@@ -22,16 +22,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 posY += (mouseY - posY) / 9;
                 
                 gsap.set(cursorFollower, {
-                    css: {
-                        left: posX,
-                        top: posY
-                    }
+                    css: { left: posX, top: posY }
                 });
                 gsap.set(cursor, {
-                    css: {
-                        left: mouseX,
-                        top: mouseY
-                    }
+                    css: { left: mouseX, top: mouseY }
                 });
             }
         });
@@ -53,92 +47,99 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================================================================
-       Navbar Scroll Effect
+       Mouse Parallax Effect for Slides
        ========================================================================== */
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
+    const slides = document.querySelectorAll('.slide');
+
+    slides.forEach(slide => {
+        const layers = slide.querySelectorAll('.layer');
+
+        slide.addEventListener('mousemove', (e) => {
+            if (window.innerWidth < 768) return; // Disable on mobile
+
+            const rect = slide.getBoundingClientRect();
+            // Calculate mouse position relative to the center of the slide (-1 to 1)
+            const x = (e.clientX - rect.left - rect.width / 2) / (rect.width / 2);
+            const y = (e.clientY - rect.top - rect.height / 2) / (rect.height / 2);
+
+            layers.forEach(layer => {
+                const depth = parseFloat(layer.getAttribute('data-depth')) || 0.2;
+                
+                // Foreground moves more, background moves less, and in opposite directions
+                const moveX = x * depth * -50; 
+                const moveY = y * depth * -50;
+
+                gsap.to(layer, {
+                    x: moveX,
+                    y: moveY,
+                    duration: 1,
+                    ease: 'power2.out',
+                    overwrite: 'auto'
+                });
+            });
+        });
+
+        // Reset layers when mouse leaves the slide
+        slide.addEventListener('mouseleave', () => {
+            layers.forEach(layer => {
+                gsap.to(layer, {
+                    x: 0,
+                    y: 0,
+                    duration: 1.5,
+                    ease: 'power3.out',
+                    overwrite: 'auto'
+                });
+            });
+        });
     });
 
     /* ==========================================================================
-       Parallax Hero Animation
+       Scroll Slide Reveal Animations
        ========================================================================== */
-    // Create parallax effect on scroll for hero layers
-    const parallaxLayers = document.querySelectorAll('.parallax-layer');
+    // Instead of traditional scrolling, we animate elements in when the slide snaps into view
     
-    parallaxLayers.forEach(layer => {
-        const speed = parseFloat(layer.getAttribute('data-speed'));
+    slides.forEach((slide, index) => {
+        const content = slide.querySelector('.slide-content');
+        const img = slide.querySelector('.floating-img');
         
-        gsap.to(layer, {
-            y: (i, target) => -ScrollTrigger.maxScroll(window) * target.dataset.speed,
-            ease: "none",
-            scrollTrigger: {
-                trigger: ".hero",
-                start: "top top",
-                end: "bottom top",
-                scrub: 1, // Smooth scrubbing
-            }
+        // Initial state
+        if (content) gsap.set(content, { y: 50, opacity: 0 });
+        if (img) gsap.set(img, { scale: 0.8, opacity: 0 });
+
+        ScrollTrigger.create({
+            trigger: slide,
+            scroller: ".slider-container", // We are scrolling the container, not the window
+            start: "top 50%", // Trigger when slide reaches middle of viewport
+            onEnter: () => animateSlideIn(content, img),
+            onEnterBack: () => animateSlideIn(content, img),
+            onLeave: () => animateSlideOut(content, img),
+            onLeaveBack: () => animateSlideOut(content, img)
         });
     });
 
-    // Hero content subtle fade and slide up
-    gsap.to('.hero-content', {
-        y: 100,
-        opacity: 0,
-        ease: "none",
-        scrollTrigger: {
-            trigger: ".hero",
-            start: "top top",
-            end: "bottom top",
-            scrub: true
+    function animateSlideIn(content, img) {
+        if (content) {
+            gsap.to(content, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', delay: 0.2 });
         }
-    });
-
-    /* ==========================================================================
-       Reveal Animations on Scroll
-       ========================================================================== */
-    // Reveal Up
-    const revealUpElements = document.querySelectorAll('.reveal-up');
-    revealUpElements.forEach(el => {
-        gsap.to(el, {
-            y: 0,
-            opacity: 1,
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-                trigger: el,
-                start: "top 85%", // Trigger when top of element hits 85% of viewport
-                toggleActions: "play none none reverse"
-            }
-        });
-    });
-
-    // Reveal Left (Image)
-    gsap.to('.reveal-left', {
-        x: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: ".about-section",
-            start: "top 75%",
+        if (img) {
+            gsap.to(img, { scale: 1, opacity: 1, duration: 1.5, ease: 'expo.out', delay: 0.4 });
         }
-    });
+    }
 
-    // Reveal Right (Content)
-    gsap.to('.reveal-right', {
-        x: 0,
-        opacity: 1,
-        duration: 1.2,
-        ease: "power3.out",
-        scrollTrigger: {
-            trigger: ".about-section",
-            start: "top 75%",
+    function animateSlideOut(content, img) {
+        if (content) {
+            gsap.to(content, { y: -50, opacity: 0, duration: 0.5, ease: 'power2.in' });
         }
-    });
+        if (img) {
+            gsap.to(img, { scale: 1.1, opacity: 0, duration: 0.5, ease: 'power2.in' });
+        }
+    }
+
+    // Trigger the first slide animation manually on load
+    const firstSlideContent = slides[0].querySelector('.slide-content');
+    const firstSlideImg = slides[0].querySelector('.floating-img');
+    setTimeout(() => {
+        animateSlideIn(firstSlideContent, firstSlideImg);
+    }, 100);
+
 });
