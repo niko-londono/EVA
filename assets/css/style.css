@@ -2,7 +2,7 @@
    CSS Variables & Resets
    ========================================================================== */
 :root {
-    --text-primary: #ffffff;
+    --text-primary: #f8f6f0;
     --text-dark: #1a1a1a;
     --accent-color: #ffd1dc; /* Pastel pink */
     
