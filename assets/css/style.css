@@ -170,6 +170,22 @@ a {
     width: 100%;
 }
 
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    pointer-events: auto;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
 /* ==========================================================================
    Slider Container & GSAP Slides
    ========================================================================== */
@@ -216,6 +232,7 @@ a {
     background-size: cover;
     background-position: center;
     will-change: transform;
+    pointer-events: none;
 }
 
 .slide-content {
@@ -285,12 +302,40 @@ a {
     
     .navbar {
         padding: 20px 5%;
-        justify-content: center;
+        justify-content: space-between;
+    }
+    
+    .hamburger {
+        display: flex;
     }
     
     .nav-links {
-        display: none;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        transition: right 0.4s ease;
+        z-index: 1000;
+        display: flex;
     }
+    
+    .nav-links.active {
+        right: 0;
+    }
+    
+    .nav-links li a {
+        font-size: 2rem;
+        margin: 15px 0;
+    }
+    
+    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(2) { opacity: 0; }
+    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
     
     .slide-content {
         padding-bottom: 25vh; /* Push text up slightly so image can sit below */

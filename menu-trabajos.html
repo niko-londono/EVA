@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVA | Trabajos y Colaboraciones</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="assets/css/style.css">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
+    
+    <style>
+        .menu-list {
+            list-style: none;
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            pointer-events: auto;
+        }
+        .menu-list a {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-family: var(--font-heading);
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+        .menu-list a:hover {
+            color: var(--accent-color);
+            transform: translateX(15px);
+        }
+        .align-right .menu-list a:hover {
+            transform: translateX(-15px);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">EVA</a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html#slide-1">Inicio</a></li>
+            <li><a href="index.html#slide-2">Obras</a></li>
+            <li><a href="index.html#slide-3">Sobre Mí</a></li>
+        </ul>
+    </nav>
+
+    <main class="slider-container">
+        
+        <!-- SLIDE 1: FOTÓGRAFOS -->
+        <section class="slide" id="slide-1">
+            <div class="parallax-scene">
+                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);"></div>
+                
+                <div class="layer content-layer" data-depth="0.3">
+                    <div class="slide-content align-left">
+                        <p class="subtitle" style="color: #a0a0a0; margin-bottom: 10px;">Colaboraciones</p>
+                        <h2 class="huge-title" style="font-size: clamp(4rem, 8vw, 8rem); margin-bottom: 0;">FOTÓGRAFOS</h2>
+                        <ul class="menu-list">
+                            <li><a href="fotografo1.html">Mario Testino</a></li>
+                            <li><a href="fotografo2.html">Annie Leibovitz</a></li>
+                            <li><a href="fotografo3.html">Peter Lindbergh</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: MARCAS -->
+        <section class="slide" id="slide-2">
+            <div class="parallax-scene">
+                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);"></div>
+                
+                <div class="layer content-layer" data-depth="0.2">
+                    <div class="slide-content align-right">
+                        <p class="subtitle" style="color: #a0a0a0; margin-bottom: 10px;">Campañas Globales</p>
+                        <h2 class="huge-title" style="font-size: clamp(4rem, 8vw, 8rem); margin-bottom: 0;">MARCAS</h2>
+                        <ul class="menu-list" style="align-items: flex-end;">
+                            <li><a href="marca1.html">Vogue</a></li>
+                            <li><a href="marca2.html">Chanel</a></li>
+                            <li><a href="marca3.html">Gucci</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
