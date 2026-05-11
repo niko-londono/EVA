@@ -187,8 +187,19 @@ document.addEventListener('DOMContentLoaded', () => {
         ignore: ".gallery-grid, .gallery-grid *"
     });
 
-    // Start with slide 0
-    gotoSlide(0, 1);
+    // Start with correct slide based on hash
+
+    let startIdx = 0;
+    if (window.location.hash) {
+        const match = window.location.hash.match(/#slide-(\d+)/);
+        if (match) {
+            startIdx = parseInt(match[1]) - 1;
+            if (startIdx < 0) startIdx = 0;
+            if (startIdx >= slides.length) startIdx = slides.length - 1;
+        }
+    }
+    gotoSlide(startIdx, 1);
+
     
     // Handle Navigation Clicks
     document.querySelectorAll('.nav-links li a').forEach((link, idx) => {
