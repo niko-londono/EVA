@@ -183,7 +183,8 @@ document.addEventListener('DOMContentLoaded', () => {
         onDown: () => !animating && gotoSlide(currentIndex - 1, -1),
         onUp: () => !animating && gotoSlide(currentIndex + 1, 1),
         tolerance: 10,
-        preventDefault: true
+        preventDefault: true,
+        ignore: ".gallery-grid, .gallery-grid *"
     });
 
     // Start with slide 0
@@ -192,10 +193,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Handle Navigation Clicks
     document.querySelectorAll('.nav-links li a').forEach((link, idx) => {
         link.addEventListener('click', (e) => {
-            e.preventDefault();
-            if(idx !== currentIndex && !animating) {
-                const direction = idx > currentIndex ? 1 : -1;
-                gotoSlide(idx, direction);
+            const href = link.getAttribute('href');
+            
+            if (!href || href === 'javascript:history.back()') return;
+
+            const isIndexPage = window.location.pathname.endsWith('index.html') || window.location.pathname.endsWith('/') || window.location.pathname.endsWith('/EVA/');
+
+            if (isIndexPage && (href.startsWith('#') || href.includes('index.html#'))) {
+                e.preventDefault();
+                let targetIdx = idx;
+                const match = href.match(/#slide-(\d+)/);
+                if (match) {
+                    targetIdx = parseInt(match[1]) - 1;
+                }
+
+                if(targetIdx !== currentIndex && !animating && targetIdx < slides.length) {
+                    const direction = targetIdx > currentIndex ? 1 : -1;
+                    gotoSlide(targetIdx, direction);
+                }
             }
         });
     });
