@@ -127,6 +127,45 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* ==========================================================================
+       Film Credits Scroll Animation
+       ========================================================================== */
+    let creditsTween = null;
+    const creditsWrapper = document.querySelector('.credits-wrapper');
+    const creditsContainer = document.querySelector('.credits-container');
+
+    function startCreditsAnimation() {
+        if (!creditsWrapper || !creditsContainer) return;
+
+        const containerHeight = creditsContainer.offsetHeight || 380;
+        const wrapperHeight = creditsWrapper.offsetHeight;
+
+        if (creditsTween) {
+            creditsTween.kill();
+        }
+
+        // Set initial position at the bottom of the container
+        gsap.set(creditsWrapper, { y: containerHeight });
+
+        const totalDistance = wrapperHeight + containerHeight;
+        
+        // Speed: 35 pixels per second
+        const duration = totalDistance / 35;
+
+        creditsTween = gsap.to(creditsWrapper, {
+            y: -wrapperHeight,
+            duration: duration,
+            ease: "none",
+            repeat: -1
+        });
+    }
+
+    function pauseCreditsAnimation() {
+        if (creditsTween) {
+            creditsTween.pause();
+        }
+    }
+
     function gotoSlide(index, direction) {
         if (animating) return;
         
@@ -199,6 +238,13 @@ document.addEventListener('DOMContentLoaded', () => {
         
         updateDotNav(currentIndex);
         updateNavActive(currentIndex);
+
+        // Start credits scroll animation if transitioning to Slide 3 (Index 2)
+        if (index === 2) {
+            startCreditsAnimation();
+        } else {
+            pauseCreditsAnimation();
+        }
     }
 
     // Observer
