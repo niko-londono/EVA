@@ -8,40 +8,13 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="assets/css/style.css">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
-    
-    <style>
-        .menu-list {
-            list-style: none;
-            margin-top: 30px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            pointer-events: auto;
-        }
-        .menu-list a {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-family: var(--font-heading);
-            letter-spacing: 2px;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .menu-list a:hover {
-            color: var(--accent-color);
-            transform: translateX(15px);
-        }
-        .align-right .menu-list a:hover {
-            transform: translateX(-15px);
-        }
-    </style>
 </head>
 <body>
 
@@ -49,7 +22,7 @@
     <div class="cursor-follower"></div>
 
     <nav class="navbar">
-        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">EVA</a>
+        <a href="index.html" class="logo">EVA</a>
         <div class="hamburger">
             <span></span>
             <span></span>
@@ -57,22 +30,33 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html#slide-1">Inicio</a></li>
-            <li><a href="index.html#slide-2">Trabajos</a></li>
-            <li><a href="index.html#slide-3">Sobre Mí</a></li>
+            <li><a href="index.html#slide-2" class="active">Trabajos</a></li>
+            <li><a href="index.html#slide-3">Info</a></li>
         </ul>
+        <div class="nav-contact">
+            <a href="mailto:hola@eva.com">Contacto</a>
+        </div>
     </nav>
+
+    <!-- Dot Nav -->
+    <div class="dot-nav">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+    </div>
 
     <main class="slider-container">
         
         <!-- SLIDE 1: FOTÓGRAFOS -->
         <section class="slide" id="slide-1">
             <div class="parallax-scene">
-                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #2c3e50 0%, #000000 100%);"></div>
+                <div class="layer bg-layer" data-depth="0.1" style="background-color: var(--bg-primary);"></div>
+                
+                <div class="deco-dot" style="top: 18%; left: 15%;"></div>
                 
                 <div class="layer content-layer" data-depth="0.3">
-                    <div class="slide-content align-left">
-                        <p class="subtitle" style="color: #a0a0a0; margin-bottom: 10px;">Colaboraciones</p>
-                        <h2 class="huge-title" style="font-size: clamp(4rem, 8vw, 8rem); margin-bottom: 0;">FOTÓGRAFOS</h2>
+                    <div class="slide-content align-left" style="top: 25%;">
+                        <p class="subtitle" style="margin-bottom: 10px;">Colaboraciones</p>
+                        <h2 class="huge-title" style="font-size: clamp(3.5rem, 7vw, 7rem); margin-bottom: 0;">FOTÓGRAFOS</h2>
                         <ul class="menu-list">
                             <li><a href="fotografo1.html">Mario Testino</a></li>
                             <li><a href="fotografo2.html">Annie Leibovitz</a></li>
@@ -86,12 +70,14 @@
         <!-- SLIDE 2: MARCAS -->
         <section class="slide" id="slide-2">
             <div class="parallax-scene">
-                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #ff4d6d 0%, #c9184a 100%);"></div>
+                <div class="layer bg-layer" data-depth="0.1" style="background-color: var(--bg-primary);"></div>
+                
+                <div class="deco-dot" style="top: 25%; right: 15%;"></div>
                 
                 <div class="layer content-layer" data-depth="0.2">
                     <div class="slide-content" style="text-align: center;">
                         <p class="subtitle" style="color: var(--text-primary); margin-bottom: 10px;">Campañas Globales</p>
-                        <h2 class="huge-title" style="font-size: clamp(4rem, 8vw, 8rem); margin-bottom: 0;">MARCAS</h2>
+                        <h2 class="huge-title" style="font-size: clamp(3.5rem, 7vw, 7rem); margin-bottom: 0;">MARCAS</h2>
                         <ul class="menu-list" style="align-items: center;">
                             <li><a href="marca1.html">Vogue</a></li>
                             <li><a href="marca2.html">Chanel</a></li>
@@ -103,6 +89,16 @@
         </section>
 
     </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-left">© 2026 EVA. All Rights Reserved.</div>
+        <div class="footer-center">E V A</div>
+        <div class="footer-right">
+            <a href="#">Instagram</a>
+            <a href="#">Vimeo</a>
+        </div>
+    </footer>
 
     <script src="assets/js/main.js"></script>
 </body>

@@ -7,48 +7,18 @@
     <link rel="icon" type="image/png" href="assets/venus.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
-    <style>
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            width: 80vw;
-            max-width: 1200px;
-            pointer-events: auto;
-        }
-        .gallery-item {
-            width: 100%;
-            height: 40vh;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            transition: transform 0.4s ease;
-        }
-        .gallery-item:hover {
-            transform: scale(1.05);
-        }
-        @media (max-width: 768px) {
-            .gallery-grid {
-                grid-template-columns: 1fr;
-                height: 60vh;
-                overflow-y: auto;
-                padding-right: 10px;
-            }
-            .gallery-item { height: 30vh; margin-bottom: 20px; }
-        }
-    </style>
 </head>
 <body>
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
     <nav class="navbar">
-        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">EVA</a>
+        <a href="index.html" class="logo">EVA</a>
         <div class="hamburger">
             <span></span>
             <span></span>
@@ -56,22 +26,31 @@
         </div>
         <ul class="nav-links">
             <li><a href="index.html#slide-1">Inicio</a></li>
-            <li><a href="index.html#slide-2">Trabajos</a></li>
-            <li><a href="index.html#slide-3">Sobre Mí</a></li>
-            <li><a href="javascript:history.back()" style="color: var(--accent-color);">← Volver</a></li>
+            <li><a href="index.html#slide-2" class="active">Trabajos</a></li>
+            <li><a href="index.html#slide-3">Info</a></li>
+            <li><a href="javascript:history.back()" style="color: var(--accent);">← Volver</a></li>
         </ul>
+        <div class="nav-contact">
+            <a href="mailto:hola@eva.com">Contacto</a>
+        </div>
     </nav>
+
+    <div class="dot-nav">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+    </div>
 
     <main class="slider-container">
         <!-- Hero Slide -->
         <section class="slide" id="slide-1">
             <div class="parallax-scene">
-                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #fad0c4 0%, #ffd1ff 100%);"></div>
+                <div class="layer bg-layer" data-depth="0.1" style="background-color: var(--bg-primary);"></div>
+                <div class="deco-dot" style="top: 18%; left: 12%;"></div>
                 <div class="layer content-layer" data-depth="0.3">
                     <div class="slide-content">
+                        <p class="subtitle" style="margin-bottom: 15px;">Retratos Célebres</p>
                         <h2 class="huge-title">ANNIE LEIBOVITZ</h2>
-                        <p class="subtitle">Retratos Célebres</p>
-                        <p style="margin-top:20px; font-size:1.2rem; opacity:0.8;">Haz scroll hacia abajo para ver la galería</p>
+                        <p style="margin-top: 25px; font-size: 0.7rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted);">Scroll para ver la galería</p>
                     </div>
                 </div>
             </div>
@@ -84,15 +63,25 @@
                 <div class="layer content-layer" data-depth="0.2">
                     <div class="slide-content" style="margin-top: 10vh;">
                         <div class="gallery-grid">
-                            <img src="https://picsum.photos/seed/fotografo23613/800/1200" class="gallery-item" alt="ANNIE LEIBOVITZ Image 1">
-                            <img src="https://picsum.photos/seed/fotografo23771/800/1200" class="gallery-item" alt="ANNIE LEIBOVITZ Image 2">
-                            <img src="https://picsum.photos/seed/fotografo23929/800/1200" class="gallery-item" alt="ANNIE LEIBOVITZ Image 3">
+                            <img src="https://picsum.photos/seed/annie1/800/1200" class="gallery-item" alt="ANNIE LEIBOVITZ Image 1">
+                            <img src="https://picsum.photos/seed/annie2/800/1200" class="gallery-item" alt="ANNIE LEIBOVITZ Image 2">
+                            <img src="https://picsum.photos/seed/annie3/800/1200" class="gallery-item" alt="ANNIE LEIBOVITZ Image 3">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-left">© 2026 EVA. All Rights Reserved.</div>
+        <div class="footer-center">E V A</div>
+        <div class="footer-right">
+            <a href="#">Instagram</a>
+            <a href="#">Vimeo</a>
+        </div>
+    </footer>
+
     <script src="assets/js/main.js"></script>
 </body>
 </html>

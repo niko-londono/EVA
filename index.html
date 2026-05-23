@@ -3,19 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EVA | Artistic Parallax</title>
+    <title>EVA | Director / Artist / Visualizer</title>
     <link rel="icon" type="image/png" href="assets/venus.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- Thick Sans-serif for Impact, clean Sans for body -->
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     
     <!-- CSS -->
     <link rel="stylesheet" href="assets/css/style.css">
     
-    <!-- GSAP for Animations -->
+    <!-- GSAP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Observer.min.js"></script>
@@ -26,91 +25,135 @@
     <div class="cursor"></div>
     <div class="cursor-follower"></div>
 
-    <!-- Navigation Overlay -->
+    <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="logo" style="text-decoration: none; color: inherit;">EVA</a>
+        <a href="index.html" class="logo">EVA</a>
         <div class="hamburger">
             <span></span>
             <span></span>
             <span></span>
         </div>
         <ul class="nav-links">
-            <li><a href="index.html#slide-1">Inicio</a></li>
+            <li><a href="index.html#slide-1" class="active">Inicio</a></li>
             <li><a href="index.html#slide-2">Trabajos</a></li>
-            <li><a href="index.html#slide-3">Sobre Mí</a></li>
+            <li><a href="index.html#slide-3">Info</a></li>
         </ul>
+        <div class="nav-contact">
+            <a href="mailto:hola@eva.com">Contacto</a>
+        </div>
     </nav>
 
-    <!-- Scroll Snapping Container -->
+    <!-- Dot Navigation -->
+    <div class="dot-nav">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+    </div>
+
+    <!-- Scroll Hint -->
+    <div class="scroll-hint">Scroll para explorar</div>
+
+    <!-- Slider Container -->
     <main class="slider-container">
         
         <!-- SLIDE 1: HERO -->
         <section class="slide" id="slide-1">
             <div class="parallax-scene">
-                <!-- Background (moves least) -->
-                <div class="layer bg-layer" data-depth="0.1" style="background-image: url('https://images.unsplash.com/photo-1579546929518-9e396f3cc809?auto=format&fit=crop&w=2000&q=80'); filter: blur(2px);"></div>
+                <!-- Dark background -->
+                <div class="layer bg-layer" data-depth="0.1" style="background-color: var(--bg-primary);"></div>
                 
-                <!-- Midground Layer -->
-                <div class="layer mid-layer" data-depth="0.4" style="background-image: url('https://images.unsplash.com/photo-1541701494587-cb58502866ab?auto=format&fit=crop&w=1200&q=80'); opacity: 0.6; mix-blend-mode: overlay;"></div>
+                <!-- Decorative dots -->
+                <div class="deco-dot" style="top: 15%; left: 18%;"></div>
+                
+                <!-- Polaroid Left -->
+                <div class="layer" data-depth="0.5" style="pointer-events: none;">
+                    <div class="polaroid" style="left: 8%; top: 18%; transform: rotate(-8deg); width: 220px;">
+                        <img src="https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?w=400&q=80" alt="Scene 01">
+                        <div class="caption">Scene 01 - Take 4</div>
+                    </div>
+                </div>
                 
                 <!-- Content Layer -->
                 <div class="layer content-layer" data-depth="0.2">
                     <div class="slide-content">
                         <h1 class="huge-title">EVA</h1>
-                        <p class="subtitle" style="color: #a0a0a0;">Conoce quién es EVA</p>
+                        <p class="subtitle">Director / Artist / Visualizer</p>
+                        <a href="menu-trabajos.html" class="btn btn-accent" style="margin-top: 35px;">
+                            <span>▶</span> Ver Trabajos
+                        </a>
                     </div>
                 </div>
                 
-                <!-- Foreground Element (moves most) -->
-                <div class="layer fg-layer" data-depth="0.8">
-                    <!-- Abstract organic shape -->
-                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80" alt="Abstract Shape" class="floating-img organic-blob" style="width: 30vw; height: 30vw; object-fit: cover; bottom: 10%; right: 10%;">
+                <!-- Polaroid Right -->
+                <div class="layer" data-depth="0.6" style="pointer-events: none;">
+                    <div class="polaroid" style="right: 8%; top: 22%; transform: rotate(5deg); width: 200px;">
+                        <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=80" alt="Location Scout">
+                        <div class="caption">Location Scout</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 2: GALLERY/WORKS -->
+        <!-- SLIDE 2: TRABAJOS -->
         <section class="slide" id="slide-2">
             <div class="parallax-scene">
-                <!-- Pastel background -->
-                <div class="layer bg-layer" data-depth="0.1" style="background: linear-gradient(135deg, #fbc2eb 0%, #a6c1ee 100%);"></div>
+                <div class="layer bg-layer" data-depth="0.1" style="background-color: var(--bg-primary);"></div>
                 
-                <div class="layer content-layer" data-depth="0.3">
-                    <div class="slide-content align-left">
-                        <h2 class="huge-title">TRABAJOS</h2>
-                        <p class="subtitle">Colección 2026</p>
-                        <a href="menu-trabajos.html" class="btn btn-glass">Ver Galería Completa</a>
+                <div class="deco-dot" style="top: 20%; left: 12%;"></div>
+                
+                <div class="layer content-layer" data-depth="0.2">
+                    <div class="slide-content">
+                        <!-- Circular Viewport -->
+                        <div class="circle-viewport">
+                            <div class="film-card" style="left: 10%; top: 20%;">
+                                <img src="https://images.unsplash.com/photo-1518676590747-1e3dcf5a1e32?w=600&q=80" alt="Urban Echoes">
+                                <div class="card-title">Fotógrafos</div>
+                                <div class="card-meta">Sesiones Exclusivas</div>
+                            </div>
+                            <div class="film-card" style="right: -5%; top: 15%; width: 35%;">
+                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" alt="A Late Bloom">
+                                <div class="card-title" style="text-align: right;">Marcas</div>
+                            </div>
+                        </div>
+                        <a href="menu-trabajos.html" class="btn btn-outline" style="margin-top: 30px;">Explorar Colección</a>
                     </div>
-                </div>
-                
-                <!-- Floating Artwork -->
-                <div class="layer fg-layer" data-depth="0.6">
-                    <img src="https://images.unsplash.com/photo-1547826039-bfc35e0f1ea8?auto=format&fit=crop&w=800&q=80" alt="Sueños Art" class="floating-img" style="border-radius: 20px; width: 40vw; height: 50vh; object-fit: cover; position: absolute; top: 25%; right: 15%; box-shadow: 0 40px 80px rgba(0,0,0,0.2);">
                 </div>
             </div>
         </section>
 
-        <!-- SLIDE 3: ABOUT / CONTACT -->
+        <!-- SLIDE 3: INFO -->
         <section class="slide" id="slide-3">
             <div class="parallax-scene">
-                <!-- Pastel background -->
-                <div class="layer bg-layer" data-depth="0.15" style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);"></div>
+                <div class="layer bg-layer" data-depth="0.1" style="background-color: var(--bg-primary);"></div>
                 
-                <div class="layer fg-layer" data-depth="0.5">
-                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80" alt="Eva" class="floating-img" style="border-radius: 10px; width: 35vw; height: 60vh; object-fit: cover; position: absolute; bottom: 10%; left: 10%; box-shadow: 0 30px 60px rgba(252, 182, 159, 0.4);">
+                <!-- Moody background photo -->
+                <div class="layer" data-depth="0.15">
+                    <div class="info-bg" style="background-image: url('https://images.unsplash.com/photo-1585907835165-e71eea51cf63?w=1600&q=80');"></div>
                 </div>
-
+                
                 <div class="layer content-layer" data-depth="0.2">
-                    <div class="slide-content align-right" style="position: absolute; right: 10%; top: 30%; max-width: 500px; text-align: left;">
-                        <h2 class="huge-title" style="font-size: 5rem;">LA<br>ARTISTA</h2>
-                        <p class="subtitle" style="color: #333; margin-top: 20px; line-height: 1.8; text-transform: none; letter-spacing: 0;">Exploro las emociones a través del color y texturas oníricas. Cada lienzo es una ventana a un mundo paralelo.</p>
-                        <a href="mailto:hola@eva.com" class="btn btn-solid" style="margin-top: 30px;">Hablemos</a>
+                    <div class="slide-content">
+                        <div class="info-content">
+                            <p class="directed-by">Directed by</p>
+                            <h2 class="brand-name">EVA Films</h2>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
 
     </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-left">© 2026 EVA. All Rights Reserved.</div>
+        <div class="footer-center">E V A</div>
+        <div class="footer-right">
+            <a href="#">Instagram</a>
+            <a href="#">Vimeo</a>
+            <a href="#">Resume</a>
+        </div>
+    </footer>
 
     <!-- Scripts -->
     <script src="assets/js/main.js"></script>

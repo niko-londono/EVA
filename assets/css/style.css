@@ -2,12 +2,18 @@
    CSS Variables & Resets
    ========================================================================== */
 :root {
-    --text-primary: #f8f6f0;
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #222222;
+    --bg-card: #2a2a2a;
+    --text-primary: #e8e0d4;
+    --text-muted: #8a8279;
     --text-dark: #1a1a1a;
-    --accent-color: #ffd1dc; /* Pastel pink */
+    --accent: #bf524b;
+    --accent-light: #d67a74;
     
-    --font-heading: 'Anton', sans-serif;
-    --font-body: 'Outfit', sans-serif;
+    --font-heading: 'Playfair Display', 'Georgia', serif;
+    --font-body: 'Space Mono', 'Courier New', monospace;
+    --font-sans: 'Inter', sans-serif;
     
     --cursor-size: 10px;
     --cursor-follower-size: 40px;
@@ -19,13 +25,31 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    background-color: #000;
+    background-color: var(--bg-primary);
     color: var(--text-primary);
     font-family: var(--font-body);
-    overflow: hidden; /* We handle scrolling via GSAP Observer */
+    overflow: hidden;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+}
+
+/* Grain Texture Overlay */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9990;
+    opacity: 0.5;
 }
 
 /* ==========================================================================
@@ -37,13 +61,12 @@ body {
     left: 0;
     width: var(--cursor-size);
     height: var(--cursor-size);
-    background-color: #fff;
+    background-color: var(--accent);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9999;
     transform: translate(-50%, -50%);
     transition: transform 0.1s ease;
-    mix-blend-mode: difference;
 }
 
 .cursor-follower {
@@ -52,18 +75,17 @@ body {
     left: 0;
     width: var(--cursor-follower-size);
     height: var(--cursor-follower-size);
-    border: 1px solid rgba(255, 255, 255, 0.4);
+    border: 1px solid var(--accent);
     border-radius: 50%;
     pointer-events: none;
     z-index: 9998;
     transform: translate(-50%, -50%);
     transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease, background-color 0.3s ease;
-    mix-blend-mode: difference;
 }
 
 .cursor-hover .cursor-follower {
     transform: translate(-50%, -50%) scale(1.5);
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(191, 82, 75, 0.15);
     border-color: transparent;
 }
 
@@ -73,6 +95,7 @@ body {
 h1, h2, h3 {
     font-family: var(--font-heading);
     text-transform: uppercase;
+    font-weight: 700;
 }
 
 a {
@@ -81,38 +104,69 @@ a {
 }
 
 .btn {
-    display: inline-block;
-    padding: 15px 40px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
     font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 2px;
+    font-weight: 400;
+    font-size: 0.8rem;
+    letter-spacing: 3px;
     text-transform: uppercase;
     transition: all 0.4s ease;
     cursor: pointer;
-    border-radius: 30px;
+    border: none;
 }
 
-.btn-glass {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+.btn-accent {
+    background: var(--accent);
     color: #fff;
+    border-radius: 0;
+}
+
+.btn-accent:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(191, 82, 75, 0.3);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--text-primary);
+    border: 1px solid rgba(232, 224, 212, 0.3);
+    border-radius: 0;
+}
+
+.btn-outline:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Keep old btn classes for compatibility */
+.btn-glass {
+    background: rgba(191, 82, 75, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(191, 82, 75, 0.3);
+    color: var(--accent-light);
+    border-radius: 0;
 }
 
 .btn-glass:hover {
-    background: rgba(255, 255, 255, 0.2);
+    background: var(--accent);
+    color: #fff;
     transform: translateY(-2px);
 }
 
 .btn-solid {
-    background: var(--text-dark);
+    background: var(--accent);
     color: #fff;
     border: none;
+    border-radius: 0;
 }
 
 .btn-solid:hover {
-    background: #333;
+    background: var(--accent-light);
     transform: translateY(-2px);
 }
 
@@ -124,35 +178,45 @@ a {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 40px 5%;
+    padding: 25px 4%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     z-index: 1000;
-    pointer-events: none; 
+    pointer-events: none;
+    border-bottom: 1px solid rgba(232, 224, 212, 0.08);
 }
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 2.5rem;
-    letter-spacing: 2px;
+    font-size: 1.6rem;
+    letter-spacing: 4px;
     pointer-events: auto;
+    font-weight: 700;
+    color: var(--text-primary);
 }
 
 .nav-links {
     list-style: none;
     display: flex;
-    gap: 40px;
+    gap: 35px;
     pointer-events: auto;
 }
 
 .nav-links li a {
-    font-size: 0.9rem;
-    font-weight: 600;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     position: relative;
-    mix-blend-mode: difference; 
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: var(--accent);
 }
 
 .nav-links li a::after {
@@ -161,15 +225,35 @@ a {
     bottom: -5px;
     left: 0;
     width: 0;
-    height: 2px;
-    background-color: #fff;
+    height: 1px;
+    background-color: var(--accent);
     transition: width 0.3s ease;
 }
 
-.nav-links li a:hover::after {
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
     width: 100%;
 }
 
+.nav-contact {
+    pointer-events: auto;
+}
+
+.nav-contact a {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.nav-contact a:hover {
+    color: var(--accent);
+}
+
+/* Hamburger */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -181,9 +265,55 @@ a {
 
 .hamburger span {
     width: 25px;
-    height: 3px;
+    height: 2px;
     background-color: var(--text-primary);
     transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   Dot Navigation (Right Side)
+   ========================================================================== */
+.dot-nav {
+    position: fixed;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    z-index: 999;
+    pointer-events: auto;
+}
+
+.dot-nav .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: 1px solid var(--accent);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot-nav .dot.active {
+    background: var(--accent);
+    transform: scale(1.4);
+}
+
+.dot-nav .dot:hover {
+    background: rgba(191, 82, 75, 0.5);
+}
+
+/* Decorative Coral Dot */
+.deco-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    position: absolute;
+    z-index: 5;
+    opacity: 0.7;
+    pointer-events: none;
 }
 
 /* ==========================================================================
@@ -205,7 +335,7 @@ a {
     display: flex;
     align-items: center;
     justify-content: center;
-    visibility: hidden; /* Hidden by default, handled by JS */
+    visibility: hidden;
 }
 
 /* ==========================================================================
@@ -215,7 +345,7 @@ a {
     position: absolute;
     top: -5%;
     left: -5%;
-    width: 110%; 
+    width: 110%;
     height: 110%;
     transform-style: preserve-3d;
 }
@@ -254,32 +384,69 @@ a {
 }
 
 .huge-title {
-    font-size: clamp(6rem, 15vw, 12rem);
+    font-family: var(--font-heading);
+    font-size: clamp(5rem, 12vw, 10rem);
     line-height: 0.9;
     letter-spacing: 5px;
-    text-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    text-shadow: 0 20px 60px rgba(0,0,0,0.4);
     margin-bottom: 20px;
+    color: var(--text-primary);
+    font-weight: 700;
 }
 
 .subtitle {
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    font-weight: 300;
-    letter-spacing: 8px;
+    font-family: var(--font-body);
+    font-size: clamp(0.65rem, 1.2vw, 0.9rem);
+    font-weight: 400;
+    letter-spacing: 6px;
     text-transform: uppercase;
-    opacity: 0.9;
+    color: var(--text-muted);
 }
 
+/* ==========================================================================
+   Polaroid Photo Frames
+   ========================================================================== */
+.polaroid {
+    position: absolute;
+    background: #f5f0e8;
+    padding: 12px 12px 40px 12px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    will-change: transform, opacity;
+    pointer-events: auto;
+    transition: transform 0.4s ease;
+}
+
+.polaroid:hover {
+    transform: scale(1.05) !important;
+}
+
+.polaroid img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.polaroid .caption {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #555;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* ==========================================================================
+   Floating Image (legacy support)
+   ========================================================================== */
 .floating-img {
     will-change: transform, opacity;
     position: absolute;
-    box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
 }
 
-/* Organic Cloud Blob Shape */
 .organic-blob {
     animation: blob-morph 8s ease-in-out infinite alternate;
-    /* Soft pastel gradient for the shape itself to replace an image if desired, 
-       but we will use it with an image as the user requested. */
 }
 
 @keyframes blob-morph {
@@ -289,19 +456,244 @@ a {
 }
 
 /* ==========================================================================
+   Circular Viewport (Films section style)
+   ========================================================================== */
+.circle-viewport {
+    width: 55vw;
+    height: 55vw;
+    max-width: 700px;
+    max-height: 700px;
+    border-radius: 50%;
+    background: var(--bg-secondary);
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.4), 0 0 80px rgba(0,0,0,0.3);
+    pointer-events: auto;
+}
+
+.circle-viewport .film-card {
+    position: absolute;
+    width: 55%;
+    transition: transform 0.5s ease;
+}
+
+.circle-viewport .film-card img {
+    width: 100%;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.circle-viewport .film-card .card-title {
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 12px;
+    color: var(--text-primary);
+}
+
+.circle-viewport .film-card .card-meta {
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-top: 5px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px 4%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 999;
+    pointer-events: none;
+    border-top: 1px solid rgba(232, 224, 212, 0.08);
+}
+
+.footer-left, .footer-center, .footer-right {
+    pointer-events: auto;
+}
+
+.footer-left {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+}
+
+.footer-center {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    letter-spacing: 4px;
+    color: var(--text-muted);
+}
+
+.footer-right {
+    display: flex;
+    gap: 25px;
+}
+
+.footer-right a {
+    font-family: var(--font-body);
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.footer-right a:hover {
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   Info/About Section Special Styles
+   ========================================================================== */
+.info-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    filter: brightness(0.3);
+}
+
+.info-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.info-content .directed-by {
+    font-family: var(--font-heading);
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 15px;
+}
+
+.info-content .brand-name {
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 5vw, 4rem);
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--accent-light);
+}
+
+/* ==========================================================================
+   Scroll Hint
+   ========================================================================== */
+.scroll-hint {
+    position: fixed;
+    bottom: 40px;
+    left: 4%;
+    font-family: var(--font-body);
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    z-index: 999;
+    pointer-events: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.scroll-hint::before {
+    content: '→';
+    color: var(--accent);
+}
+
+/* ==========================================================================
+   Gallery Grid (for subpages)
+   ========================================================================== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 80vw;
+    max-width: 1200px;
+    pointer-events: auto;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.4s ease;
+    border: 1px solid rgba(232, 224, 212, 0.05);
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+/* ==========================================================================
+   Menu List (for trabajos page)
+   ========================================================================== */
+.menu-list {
+    list-style: none;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    pointer-events: auto;
+}
+
+.menu-list a {
+    font-size: clamp(1.8rem, 4vw, 3.5rem);
+    font-family: var(--font-heading);
+    letter-spacing: 3px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.menu-list a:hover {
+    color: var(--accent);
+    transform: translateX(15px);
+}
+
+.align-right .menu-list a:hover {
+    transform: translateX(-15px);
+}
+
+/* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 768px) {
     .huge-title {
-        font-size: 4rem !important; /* Smaller for mobile to fit */
+        font-size: 3.5rem !important;
     }
     
     .cursor, .cursor-follower {
         display: none;
     }
     
+    .dot-nav {
+        display: none;
+    }
+    
     .navbar {
-        padding: 20px 5%;
+        padding: 15px 5%;
         justify-content: space-between;
     }
     
@@ -315,7 +707,7 @@ a {
         right: -100%;
         width: 100%;
         height: 100vh;
-        background-color: rgba(0, 0, 0, 0.95);
+        background-color: rgba(26, 26, 26, 0.98);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -329,16 +721,30 @@ a {
     }
     
     .nav-links li a {
-        font-size: 2rem;
+        font-size: 1.4rem;
         margin: 15px 0;
+        letter-spacing: 5px;
+        color: var(--text-primary);
     }
     
-    .hamburger.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .hamburger.active span:nth-child(2) { opacity: 0; }
-    .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    
+    .nav-contact {
+        display: none;
+    }
     
     .slide-content {
-        padding-bottom: 25vh; /* Push text up slightly so image can sit below */
+        padding-bottom: 15vh;
+    }
+    
+    .polaroid {
+        display: none;
+    }
+    
+    .deco-dot {
+        display: none;
     }
     
     .align-left, .align-right {
@@ -358,11 +764,10 @@ a {
         top: auto !important;
         left: 50% !important;
         right: auto !important;
-        margin-left: -30vw !important; /* - half width to center, avoids transform conflict with GSAP */
+        margin-left: -30vw !important;
         margin-top: 0;
     }
     
-    /* Specific overrides for images on mobile to ensure they look good */
     #slide-2 .floating-img, #slide-3 .floating-img {
         width: 70vw !important;
         height: 40vh !important;
@@ -371,5 +776,34 @@ a {
     
     .layer.content-layer {
         z-index: 10;
+    }
+    
+    .site-footer {
+        display: none;
+    }
+    
+    .scroll-hint {
+        display: none;
+    }
+    
+    .circle-viewport {
+        width: 85vw;
+        height: 85vw;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        height: 60vh;
+        overflow-y: auto;
+        padding-right: 10px;
+    }
+
+    .gallery-item {
+        height: 30vh;
+        margin-bottom: 20px;
+    }
+    
+    .menu-list a {
+        font-size: 1.8rem !important;
     }
 }
