@@ -584,11 +584,24 @@ a {
 
 .credits-wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     text-align: center;
     will-change: transform;
+    animation: scroll-credits 32s linear infinite;
+    animation-play-state: paused;
+}
+
+.slide.active-credits .credits-wrapper {
+    animation-play-state: running;
+}
+
+@keyframes scroll-credits {
+    0% {
+        transform: translateY(380px);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
 }
 
 .credits-section {
