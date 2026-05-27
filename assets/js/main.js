@@ -238,7 +238,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Prevent body/overscroll bounce on touch/wheel unless inside scrollable element (.gallery-grid)
     const preventDefaultScroll = (e) => {
-        if (e.target.closest('.gallery-grid')) {
+        if (e.target.closest('.gallery-grid') || e.target.closest('.filmstrip-wrapper') || e.target.closest('.credits-container')) {
             return;
         }
         if (e.cancelable) {
@@ -271,6 +271,51 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    /* ==========================================================================
+       Filmstrip Logic
+       ========================================================================== */
+    const filmstripWrapper = document.querySelector('.filmstrip-wrapper');
+    const filmstripNext = document.querySelector('.filmstrip-btn-next');
+    const filmstripPrev = document.querySelector('.filmstrip-btn-prev');
+
+    if (filmstripWrapper) {
+        // Drag logic
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        filmstripWrapper.addEventListener('mousedown', (e) => {
+            isDown = true;
+            startX = e.pageX - filmstripWrapper.offsetLeft;
+            scrollLeft = filmstripWrapper.scrollLeft;
+        });
+        filmstripWrapper.addEventListener('mouseleave', () => {
+            isDown = false;
+        });
+        filmstripWrapper.addEventListener('mouseup', () => {
+            isDown = false;
+        });
+        filmstripWrapper.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - filmstripWrapper.offsetLeft;
+            const walk = (x - startX) * 2;
+            filmstripWrapper.scrollLeft = scrollLeft - walk;
+        });
+
+        // Button logic
+        if (filmstripNext) {
+            filmstripNext.addEventListener('click', () => {
+                filmstripWrapper.scrollBy({ left: 300, behavior: 'smooth' });
+            });
+        }
+        if (filmstripPrev) {
+            filmstripPrev.addEventListener('click', () => {
+                filmstripWrapper.scrollBy({ left: -300, behavior: 'smooth' });
+            });
+        }
+    }
 
     // Handle Navigation Clicks
     document.querySelectorAll('.nav-links li a').forEach((link, idx) => {

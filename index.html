@@ -101,21 +101,132 @@
                 
                 <div class="deco-dot" style="top: 20%; left: 12%;"></div>
                 
-                <div class="layer content-layer" data-depth="0.2">
-                    <div class="slide-content">
-                        <!-- Circular Viewport -->
-                        <div class="circle-viewport">
-                            <div class="film-card" style="left: 10%; top: 20%;">
-                                <img src="https://images.unsplash.com/photo-1518676590747-1e3dcf5a1e32?w=600&q=80" alt="Urban Echoes">
-                                <div class="card-title">Fotógrafos</div>
-                                <div class="card-meta">Sesiones Exclusivas</div>
-                            </div>
-                            <div class="film-card" style="right: -5%; top: 15%; width: 35%;">
-                                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80" alt="A Late Bloom">
-                                <div class="card-title" style="text-align: right;">Marcas</div>
+                <!-- Camera Lens Overlay -->
+                <div class="layer" data-depth="0.15" style="pointer-events: none; z-index: 10;">
+                    <div class="lens-overlay">
+                        <div class="lens-glass"></div>
+                        <div class="lens-glare"></div>
+                    </div>
+                </div>
+
+                <!-- Filmstrip Track Layer -->
+                <div class="layer content-layer" data-depth="0.25" style="z-index: 5;">
+                    <div class="slide-content" style="width: 100%; max-width: 100vw; padding: 0;">
+                        
+                        <div class="filmstrip-container">
+                            <div class="filmstrip-wrapper">
+                                <div class="filmstrip-track">
+                                    
+                                    <!-- Frame 1: Mario Testino -->
+                                    <a href="fotografo1.html" class="film-card-link">
+                                        <div class="film-card">
+                                            <div class="film-sprockets top"></div>
+                                            <div class="film-image-container">
+                                                <img src="https://picsum.photos/seed/eva1/600/400" alt="A Late Bloom">
+                                                <div class="film-play-btn">▶</div>
+                                            </div>
+                                            <div class="film-info">
+                                                <h3 class="film-title">A Late Bloom</h3>
+                                                <p class="film-meta">Mario Testino • 2021</p>
+                                            </div>
+                                            <div class="film-sprockets bottom"></div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Frame 2: Annie Leibovitz -->
+                                    <a href="fotografo2.html" class="film-card-link">
+                                        <div class="film-card">
+                                            <div class="film-sprockets top"></div>
+                                            <div class="film-image-container">
+                                                <img src="https://picsum.photos/seed/eva2/600/400" alt="Reflections">
+                                                <div class="film-play-btn">▶</div>
+                                            </div>
+                                            <div class="film-info">
+                                                <h3 class="film-title">Reflections</h3>
+                                                <p class="film-meta">Annie Leibovitz • 2023</p>
+                                            </div>
+                                            <div class="film-sprockets bottom"></div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Frame 3: Peter Lindbergh -->
+                                    <a href="fotografo3.html" class="film-card-link">
+                                        <div class="film-card">
+                                            <div class="film-sprockets top"></div>
+                                            <div class="film-image-container">
+                                                <img src="https://picsum.photos/seed/eva3/600/400" alt="Urban Echoes">
+                                                <div class="film-play-btn">▶</div>
+                                            </div>
+                                            <div class="film-info">
+                                                <h3 class="film-title">Urban Echoes</h3>
+                                                <p class="film-meta">Peter Lindbergh • 2024</p>
+                                            </div>
+                                            <div class="film-sprockets bottom"></div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Frame 4: Vogue -->
+                                    <a href="marca1.html" class="film-card-link">
+                                        <div class="film-card">
+                                            <div class="film-sprockets top"></div>
+                                            <div class="film-image-container">
+                                                <img src="https://picsum.photos/seed/eva4/600/400" alt="The Quiet Hour">
+                                                <div class="film-play-btn">▶</div>
+                                            </div>
+                                            <div class="film-info">
+                                                <h3 class="film-title">The Quiet Hour</h3>
+                                                <p class="film-meta">Vogue • 2022</p>
+                                            </div>
+                                            <div class="film-sprockets bottom"></div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Frame 5: Chanel -->
+                                    <a href="marca2.html" class="film-card-link">
+                                        <div class="film-card">
+                                            <div class="film-sprockets top"></div>
+                                            <div class="film-image-container">
+                                                <img src="https://picsum.photos/seed/eva5/600/400" alt="Neon Drift">
+                                                <div class="film-play-btn">▶</div>
+                                            </div>
+                                            <div class="film-info">
+                                                <h3 class="film-title">Neon Drift</h3>
+                                                <p class="film-meta">Chanel • 2024</p>
+                                            </div>
+                                            <div class="film-sprockets bottom"></div>
+                                        </div>
+                                    </a>
+
+                                    <!-- Frame 6: Gucci -->
+                                    <a href="marca3.html" class="film-card-link">
+                                        <div class="film-card">
+                                            <div class="film-sprockets top"></div>
+                                            <div class="film-image-container">
+                                                <img src="https://picsum.photos/seed/eva6/600/400" alt="Shadowplay">
+                                                <div class="film-play-btn">▶</div>
+                                            </div>
+                                            <div class="film-info">
+                                                <h3 class="film-title">Shadowplay</h3>
+                                                <p class="film-meta">Gucci • 2025</p>
+                                            </div>
+                                            <div class="film-sprockets bottom"></div>
+                                        </div>
+                                    </a>
+
+                                </div>
                             </div>
                         </div>
-                        <a href="menu-trabajos.html" class="btn btn-outline" style="margin-top: 30px;">Explorar Colección</a>
+
+                        <!-- Filmstrip Nav controls for PC -->
+                        <div class="filmstrip-controls">
+                            <button class="filmstrip-btn filmstrip-btn-prev" aria-label="Anterior">⟨</button>
+                            <button class="filmstrip-btn filmstrip-btn-next" aria-label="Siguiente">⟩</button>
+                        </div>
+
+                        <div class="filmstrip-hint" style="margin-top: 15px;">
+                            <p style="font-size: 0.6rem; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted);">Desliza para explorar proyectos</p>
+                            <p style="font-size: 0.5rem; letter-spacing: 2px; text-transform: uppercase; color: var(--accent-light); margin-top: 4px;">Haz clic en un fotograma para ver detalles</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +239,7 @@
                 
                 <!-- Moody background photo -->
                 <div class="layer" data-depth="0.15">
-                    <div class="info-bg" style="background-image: url('assets/IMAGEN_DE_FONDO.png');"></div>
+                    <div class="info-bg" style="background-image: url('assets/studio.png');"></div>
                 </div>
                 
                 <div class="layer content-layer" data-depth="0.2">
