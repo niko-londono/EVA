@@ -563,10 +563,9 @@ a {
 .info-bg {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100vw;
-    height: 100vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-size: cover;
     background-position: center center;
     background-repeat: no-repeat;
@@ -1050,5 +1049,12 @@ a {
     
     .filmstrip-controls {
         display: none;
+    }
+}
+
+/* Desktop: slower credits for larger screens */
+@media (min-width: 769px) {
+    .credits-wrapper {
+        animation-duration: 180s;
     }
 }
