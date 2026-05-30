@@ -563,13 +563,15 @@ a {
 .info-bg {
     position: absolute;
     top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    height: 100vh;
     background-size: cover;
-    background-position: center;
-    opacity: 0.7;
-    filter: brightness(0.65) contrast(1.05);
+    background-position: center center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    filter: brightness(0.6) contrast(1.1);
 }
 
 .credits-container {
@@ -587,7 +589,7 @@ a {
     width: 100%;
     text-align: center;
     will-change: transform;
-    animation: scroll-credits 32s linear infinite;
+    animation: scroll-credits 90s linear infinite;
     animation-play-state: paused;
 }
 
@@ -913,74 +915,7 @@ a {
     color: black;
 }
 
-/* ==========================================================================
-   Info / Credits
-   ========================================================================== */
-.info-bg {
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.4;
-    filter: contrast(1.2) brightness(0.7);
-}
-
-.credits-container {
-    height: 60vh;
-    overflow: hidden;
-    position: relative;
-    mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 80%, transparent 100%);
-    width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-}
-
-.credits-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 40px;
-    text-align: center;
-    padding-bottom: 50px;
-    animation: creditsScroll 45s linear infinite;
-}
-
-@keyframes creditsScroll {
-    0% {
-        transform: translateY(100%);
-    }
-    100% {
-        transform: translateY(-100%);
-    }
-}
-
-.credits-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.credit-role {
-    font-family: var(--font-body);
-    font-size: 0.8rem;
-    color: var(--accent-light);
-    text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 5px;
-}
-
-.credit-name {
-    font-family: var(--font-heading);
-    font-size: 1.5rem;
-    color: var(--text-primary);
-    letter-spacing: 2px;
-}
-
-.credit-name.highlight {
-    font-size: 2.5rem;
-    color: white;
-}
+/* Duplicate info/credits block removed — styles consolidated above */
 
 /* ==========================================================================
    Responsive
