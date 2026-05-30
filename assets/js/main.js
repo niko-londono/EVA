@@ -340,4 +340,46 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    /* ==========================================================================
+       Bouncing Polaroids
+       ========================================================================== */
+    const polaroids = document.querySelectorAll('.bouncing-polaroid');
+    if (polaroids.length > 0) {
+        polaroids.forEach(p => {
+            let vx = parseFloat(p.getAttribute('data-vx')) || 1;
+            let vy = parseFloat(p.getAttribute('data-vy')) || 1;
+            
+            let posX = 0;
+            let posY = 0;
+            
+            const animate = () => {
+                if (currentIndex === 0 && !animating) {
+                    const rect = p.getBoundingClientRect();
+                    
+                    if (rect.left <= 0 && vx < 0) {
+                        vx *= -1;
+                    } else if (rect.right >= window.innerWidth && vx > 0) {
+                        vx *= -1;
+                    }
+                    
+                    if (rect.top <= 0 && vy < 0) {
+                        vy *= -1;
+                    } else if (rect.bottom >= window.innerHeight && vy > 0) {
+                        vy *= -1;
+                    }
+                    
+                    posX += vx;
+                    posY += vy;
+                    
+                    gsap.set(p, { x: posX, y: posY });
+                }
+                requestAnimationFrame(animate);
+            };
+            
+            setTimeout(() => {
+                animate();
+            }, 2000);
+        });
+    }
+
 });

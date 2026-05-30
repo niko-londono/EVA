@@ -943,7 +943,7 @@ a {
     gap: 40px;
     text-align: center;
     padding-bottom: 50px;
-    animation: creditsScroll 15s linear infinite;
+    animation: creditsScroll 45s linear infinite;
 }
 
 @keyframes creditsScroll {

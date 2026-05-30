@@ -65,9 +65,9 @@
                 <!-- Decorative dots -->
                 <div class="deco-dot" style="top: 15%; left: 18%;"></div>
                 
-                <!-- Polaroid Left -->
-                <div class="layer" data-depth="0.5" style="pointer-events: none;">
-                    <div class="polaroid" style="left: 8%; top: 18%; transform: rotate(-8deg); width: 220px;">
+                <!-- Polaroid 1 -->
+                <div class="layer" data-depth="0.5" style="pointer-events: auto;">
+                    <div class="polaroid bouncing-polaroid" style="left: 8%; top: 18%; transform: rotate(-8deg); width: 220px;" data-vx="1.5" data-vy="1.2">
                         <img src="https://images.unsplash.com/photo-1495745966610-2a67f2297e5e?w=400&q=80" alt="Scene 01">
                         <div class="caption">Scene 01 - Take 4</div>
                     </div>
@@ -84,11 +84,27 @@
                     </div>
                 </div>
                 
-                <!-- Polaroid Right -->
-                <div class="layer" data-depth="0.6" style="pointer-events: none;">
-                    <div class="polaroid" style="right: 8%; top: 22%; transform: rotate(5deg); width: 200px;">
+                <!-- Polaroid 2 -->
+                <div class="layer" data-depth="0.6" style="pointer-events: auto;">
+                    <div class="polaroid bouncing-polaroid" style="right: 8%; top: 22%; transform: rotate(5deg); width: 200px;" data-vx="-1.2" data-vy="1.5">
                         <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?w=400&q=80" alt="Location Scout">
                         <div class="caption">Location Scout</div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 3 -->
+                <div class="layer" data-depth="0.4" style="pointer-events: auto;">
+                    <div class="polaroid bouncing-polaroid" style="left: 20%; bottom: 15%; transform: rotate(12deg); width: 180px;" data-vx="1.8" data-vy="-1.1">
+                        <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&q=80" alt="Behind the scenes">
+                        <div class="caption">Behind the scenes</div>
+                    </div>
+                </div>
+
+                <!-- Polaroid 4 -->
+                <div class="layer" data-depth="0.7" style="pointer-events: auto;">
+                    <div class="polaroid bouncing-polaroid" style="right: 25%; bottom: 10%; transform: rotate(-15deg); width: 210px;" data-vx="-1.4" data-vy="-1.6">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400&q=80" alt="Set Design">
+                        <div class="caption">Set Design</div>
                     </div>
                 </div>
             </div>
@@ -101,13 +117,7 @@
                 
                 <div class="deco-dot" style="top: 20%; left: 12%;"></div>
                 
-                <!-- Camera Lens Overlay -->
-                <div class="layer" data-depth="0.15" style="pointer-events: none; z-index: 10;">
-                    <div class="lens-overlay">
-                        <div class="lens-glass"></div>
-                        <div class="lens-glare"></div>
-                    </div>
-                </div>
+                <!-- No Camera Lens Overlay -->
 
                 <!-- Filmstrip Track Layer -->
                 <div class="layer content-layer" data-depth="0.25" style="z-index: 5;">
@@ -239,7 +249,7 @@
                 
                 <!-- Moody background photo -->
                 <div class="layer" data-depth="0.15">
-                    <div class="info-bg" style="background-image: url('assets/studio.png');"></div>
+                    <div class="info-bg" style="background-image: url('assets/IMAGEN_DE_FONDO.png');"></div>
                 </div>
                 
                 <div class="layer content-layer" data-depth="0.2">
