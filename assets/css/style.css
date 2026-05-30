@@ -588,7 +588,7 @@ a {
     width: 100%;
     text-align: center;
     will-change: transform;
-    animation: scroll-credits 90s linear infinite;
+    animation: scroll-credits 60s linear infinite;
     animation-play-state: paused;
 }
 
@@ -980,7 +980,16 @@ a {
     }
     
     .polaroid {
-        display: none;
+        display: block !important;
+        max-width: 110px !important;
+        padding: 6px 6px 20px 6px !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.4) !important;
+    }
+    
+    .polaroid .caption {
+        font-size: 0.4rem !important;
+        margin-top: 5px !important;
+        letter-spacing: 1px !important;
     }
     
     .deco-dot {
@@ -1055,6 +1064,6 @@ a {
 /* Desktop: slower credits for larger screens */
 @media (min-width: 769px) {
     .credits-wrapper {
-        animation-duration: 180s;
+        animation-duration: 110s;
     }
 }
